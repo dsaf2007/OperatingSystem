@@ -19,6 +19,7 @@ int main()
 {
 	string text1="exit\n", text2=NULL;
 	history_index=0;
+	string* argv;
 	
 	while(1)
 	{
@@ -68,22 +69,16 @@ int main()
 				perror("fork error");
 				break;
 			case 0:
-				input[strlen(input)]='\0';
-				printf("%s",input);
 				addHistory(input);
-				if(strcmp(input,"history\0")==0)
+				argv = setArgs(input);
+				if(strcmp(input,"history")==0)
 				{
-					printf("s");
 					dispHistory();
 					exit(0);
 				}
 				else
 				{
-
-					text1=strtok(input," ");
-					text2=strtok(NULL,"\0");
-					char* args={"ls","-al"};
-					execvp(args[0],args);
+					execvp(argv[0],argv);
 					exit(0);
 				}
 				wait(NULL);
@@ -120,8 +115,26 @@ void dispHistory()
 	}
 }
 
-string setArgs(string str)
+string* setArgs(string str)
 {
 	int lenght=strlen(str);
 	int space=0,index=0;
+
+	for(int i=0;i<length;i++)
+		if(str[i]==' ')space++;
+
+	string* temp=(string*)calloc(space+2,sizeop(string));
+	string pch;
+	pch=strtok(str," ");
+	temp[0]=pch;
+	int i = 1;
+	while(pch !=NULL)
+	{
+		pch = strtoc(NULL," ");
+		temp[i]=pch;
+		i++
+	}
+	temp[i]='\0';
+	return temp;
+	
 }
