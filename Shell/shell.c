@@ -131,12 +131,11 @@ string* setArgs(char str[])
 	string* temp=(string*)calloc(space+2,sizeof(string));
 	string pch;
 	pch=strtok(str," ");
-	temp[0]=pch;
-	int i = 1;
+	int i = 0;
 	while(pch !=NULL)
 	{
-		pch = strtok(NULL," ");
 		temp[i]=pch;
+		pch = strtok(NULL," ");
 		i++;
 	}
 	temp[i]="\0";
