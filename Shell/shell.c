@@ -9,7 +9,7 @@
 #define MAX_LINE 80
 
 typedef char* string;
-string* history[MAX_HIST];
+string history[MAX_HIST];
 int history_index;
 
 string* setArgs(string str);
@@ -24,9 +24,10 @@ int main()
 	while(1)
 	{
 	//	char input[MAX_LINE/2+1];
-		string input;
-		input = (char*)malloc(sizeof(char)*(MAX_LINE/2 +1));
-		fflush(stdout);
+		//string input;
+		//input = (char*)malloc(sizeof(char)*(MAX_LINE/2 +1));
+		char input[MAX_LINE/2+1];
+		fflush(stdin);
 		read(0,input,MAX_LINE/2+1);
 
 		if(strcmp(text1,input)==0)
@@ -71,6 +72,10 @@ int main()
 			case 0:
 				addHistory(input);
 				argv = setArgs(input);
+				for(int i = 0 ;i<3;i++)
+				{
+					printf("%s ",argv[i]);
+				}
 				if(strcmp(input,"history")==0)
 				{
 					dispHistory();
@@ -90,10 +95,10 @@ int main()
 }
 
 
-void addHistory(string hist)
+void addHistory(char hist[])
 {
 	history_index++;
-	history[history_index]=(char**)malloc(sizeof(char)*strlen(hist));
+	history[history_index]=(string)malloc(sizeof(char)*strlen(hist));
 	strcpy(history[history_index],hist);
 }
 
@@ -115,7 +120,7 @@ void dispHistory()
 	}
 }
 
-string* setArgs(string str)
+string* setArgs(char str[])
 {
 	int length=strlen(str);
 	int space=0,index=0;
@@ -134,7 +139,7 @@ string* setArgs(string str)
 		temp[i]=pch;
 		i++;
 	}
-	temp[i]='\0';
+	temp[i]="\0";
 	return temp;
 	
 }
