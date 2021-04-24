@@ -117,7 +117,7 @@ void dispHistory()
 
 string* setArgs(string str)
 {
-	int lenght=strlen(str);
+	int length=strlen(str);
 	int space=0,index=0;
 
 	for(int i=0;i<length;i++)
