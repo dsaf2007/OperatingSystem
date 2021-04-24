@@ -17,7 +17,7 @@ void dispHistory();
 void addHistory(string hist);
 int main()
 {
-	string text1="exit\n", text2=NULL;
+	string text1="exit\n", text2="history\n";
 	history_index=0;
 	string* argv;
 	
@@ -26,10 +26,14 @@ int main()
 	//	char input[MAX_LINE/2+1];
 		//string input;
 		//input = (char*)malloc(sizeof(char)*(MAX_LINE/2 +1));
-		char input[MAX_LINE/2+1];
-		fflush(stdin);
+	//	char input[MAX_LINE/2+1];
+		string input;
+	//	fflush(stdout);
+	//	scanf("%s",input);
+	//	getchar();
 		read(0,input,MAX_LINE/2+1);
-
+	//	fgets(input,MAX_LINE/2+1,stdin);
+	//	printf("%s\n",input);
 		if(strcmp(text1,input)==0)
 		{
 			printf("exit shell");
@@ -63,82 +67,92 @@ int main()
 				}
 			}	
 		}
-
+		if(strstr(input,"history")==NULL)addHistory(input);
 		switch(fork())
 		{
 			case -1:
 				perror("fork error");
 				break;
 			case 0:
-				addHistory(input);
 				argv = setArgs(input);
-				for(int i = 0 ;i<3;i++)
-				{
-					printf("%s ",argv[i]);
-				}
-				if(strcmp(input,"history")==0)
+				if(strcmp(argv[0],"history")==0)
 				{
 					dispHistory();
 					exit(0);
 				}
 				else
 				{
+					if(strcmp(argv[0],"cd")==0)
+					{
+						printf("change dir");
+						chdir(argv[1]);
+					}
+					else
+					{
 					execvp(argv[0],argv);
 					exit(0);
+					}
 				}
+				break;
+			default:
 				wait(NULL);
-
-
 		}
+
 	}
 	return 0;
 }
 
 
-void addHistory(char hist[])
+void addHistory(string hist)
 {
 	history_index++;
 	history[history_index]=(string)malloc(sizeof(char)*strlen(hist));
 	strcpy(history[history_index],hist);
+//	printf("%d\n",history_index);
 }
 
 void dispHistory()
 {
 	if(history_index<11)
 	{
-		for(int i = history_index;i>0;i++)
+		for(int i = history_index;i>0;i--)
 		{
-			printf("%d %s\n",i,history[i]);
+			printf("%d %s",i,history[i]);
 		}
 	}
 	else
 	{
 		for(int i = history_index;i>history_index-10;i--)
 		{
-			printf("%d %s\n",i,history[i]);
+			printf("%d %s",i,history[i]);
 		}
 	}
 }
 
-string* setArgs(char str[])
+string* setArgs(string str)
 {
 	int length=strlen(str);
 	int space=0,index=0;
-
+	string temp_str=str;
 	for(int i=0;i<length;i++)
+	{
+	//	printf("%c\n",str[i]);
 		if(str[i]==' ')space++;
-
-	string* temp=(string*)calloc(space+2,sizeof(string));
+	}
+	string* temp=(string*)calloc(space+1,sizeof(string));
 	string pch;
-	pch=strtok(str," ");
-	int i = 0;
+	pch=strtok(temp_str,"\n ");
+//	printf("%s\n",pch);
+	index = 0;
 	while(pch !=NULL)
 	{
-		temp[i]=pch;
-		pch = strtok(NULL," ");
-		i++;
+		temp[index]=pch;
+		pch = strtok(NULL,"\n ");
+		index++;
+	//	temp[index]=strtok(NULL," ");
 	}
-	temp[i]="\0";
+//	if(index ==1)
+	//	temp[index]=NULL;
 	return temp;
 	
 }
