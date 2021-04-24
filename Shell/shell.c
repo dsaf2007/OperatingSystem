@@ -123,7 +123,7 @@ string* setArgs(string str)
 	for(int i=0;i<length;i++)
 		if(str[i]==' ')space++;
 
-	string* temp=(string*)calloc(space+2,sizeop(string));
+	string* temp=(string*)calloc(space+2,sizeof(string));
 	string pch;
 	pch=strtok(str," ");
 	temp[0]=pch;
@@ -132,7 +132,7 @@ string* setArgs(string str)
 	{
 		pch = strtoc(NULL," ");
 		temp[i]=pch;
-		i++
+		i++;
 	}
 	temp[i]='\0';
 	return temp;
