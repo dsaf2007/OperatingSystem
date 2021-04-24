@@ -12,6 +12,7 @@ typedef char* string;
 string* history[MAX_HIST];
 int history_index;
 
+string* setArgs(string str);
 void dispHistory();
 void addHistory(string hist);
 int main()
@@ -117,4 +118,10 @@ void dispHistory()
 			printf("%d %s\n",i,history[i]);
 		}
 	}
+}
+
+string setArgs(string str)
+{
+	int lenght=strlen(str);
+	int space=0,index=0;
 }
