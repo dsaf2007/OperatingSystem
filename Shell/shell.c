@@ -130,7 +130,7 @@ string* setArgs(string str)
 	int i = 1;
 	while(pch !=NULL)
 	{
-		pch = strtoc(NULL," ");
+		pch = strtok(NULL," ");
 		temp[i]=pch;
 		i++;
 	}
