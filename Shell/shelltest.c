@@ -86,7 +86,7 @@ int main()
 			setArgs(front,argv);
 			setArgs(back,argv2);
            // printf("%s %s",argv2[0],argv2[1]);
-			if(pipe(fd)==-1)//파이프 생성
+			if(pipe(fd) == -1)//파이프 생성
 			{
 				printf("fail to call pipe()\n");
 				exit(1);
@@ -99,7 +99,7 @@ int main()
 				case 0:
 					if(close(1)==-1)perror("1");
 					if(dup(fd[1]) != 0);//출력파이프 연결
-					if(close(fd[0])==-1 || close(fd[1]) ==-1)
+					if(close(fd[0]) == -1 || close(fd[1]) == -1)
 					{
 						perror("2");
 					}
@@ -115,7 +115,7 @@ int main()
 				case 0:
 					if(close(1)==-1)perror("3");
 					if(dup(fd[0]) != 0);//출력파이프 연결
-					if(close(fd[0])==-1 || close(fd[1]) ==-1)
+					 if(close(fd[0]) == -1 || close(fd[1]) == -1)
 					{
 						perror("4");
 					}
