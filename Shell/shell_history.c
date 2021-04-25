@@ -29,8 +29,8 @@ int main()
 	//	char input[MAX_LINE/2+1];
 		//string input;
 		//input = (char*)malloc(sizeof(char)*(MAX_LINE/2 +1));
-	//	char input[MAX_LINE/2+1];
-		string input;
+		char input[MAX_LINE/2+1];
+		//string input;
 	//	fflush(stdout);
 	//	scanf("%s",input);
 	//	getchar();
