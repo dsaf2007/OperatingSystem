@@ -23,7 +23,7 @@ int main()
 	string front =NULL,back =NULL;
 	history_index=0;
 	string argv[4];
-	string argv2[5];
+	string argv2[4];
 	while(1)
 	{
 	//	char input[MAX_LINE/2+1];
@@ -99,6 +99,7 @@ int main()
 						perror("2");
 					}
 					execvp(argv[0], argv);
+                    printf("no command");
 					exit(0);
 			}
 			switch(fork())//back
@@ -114,6 +115,7 @@ int main()
 						perror("4");
 					}
 					execvp(argv2[0], argv2);
+                    printf("no command");
 					exit(0);
 			}
 			if(close(fd[0])==-1 || close(fd[1])==-1)
@@ -195,5 +197,5 @@ void setArgs(string str,char** argv)
         i++;
     }
    argv[i]=(char*)0;
-    printf("%d\n",i);
+    //printf("%d\n",i);
 }
