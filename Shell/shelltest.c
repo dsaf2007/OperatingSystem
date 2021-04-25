@@ -172,14 +172,14 @@ void dispHistory()
 	{
 		for(int i = history_index;i>0;i--)
 		{
-			printf("%d %s",i,history[i]);
+			printf("%d %s\n",i,history[i]);
 		}
 	}
 	else
 	{
 		for(int i = history_index;i>history_index-10;i--)
 		{
-			printf("%d %s",i,history[i]);
+			printf("%d %s\n",i,history[i]);
 		}
 	}
 }
