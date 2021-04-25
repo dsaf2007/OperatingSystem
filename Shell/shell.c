@@ -73,15 +73,15 @@ int main()
 		}
 		if (strstr(input, "history") == NULL)addHistory(input);
 
-		if (strchr(input, '|') != NULL)
-		{
-			printf("pipe\n");
-			front = strtok(input, "|");
-			back = strtok(NULL, " ");
-			setArgs(front, &argv);
-			free(input);
-			//printf("%s",back);
-			setArgs(back, &argv2);
+		// if (strchr(input, '|') != NULL)
+		// {
+		// 	printf("pipe\n");
+		// 	front = strtok(input, "|");
+		// 	back = strtok(NULL, " ");
+		// 	setArgs(front, &argv);
+		// 	free(input);
+		// 	//printf("%s",back);
+		// 	setArgs(back, &argv2);
 			// if(pipe(fd)==-1)//파이프 생성
 			// {
 			// 	printf("fail to call pipe()\n");
@@ -122,10 +122,10 @@ int main()
 		// if(close(fd[0])==-1 || close(fd[1])==-1)
 		// 	perror("5");
 		// while(wait(NULL) != -1);
-		}
+		// }
 	
-		else
-		{
+		// else
+		// {
 		switch (fork())
 		{
 		case -1:
@@ -156,7 +156,7 @@ int main()
 			wait(NULL);
 		}
 
-		}
+		//}
 	}
 
 return 0;
