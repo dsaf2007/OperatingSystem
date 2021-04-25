@@ -16,7 +16,7 @@ void setArgs(string str,char** argv);
 void dispHistory();
 void addHistory(string hist);
 
-int fd[2];
+
 int main()
 {
 	string text1="exit\n", text2="history\n";
@@ -24,6 +24,7 @@ int main()
 	history_index=0;
 	string argv[4];
 	string argv2[4];
+    int fd[2];
 	while(1)
 	{
 	//	char input[MAX_LINE/2+1];
