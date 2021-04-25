@@ -98,7 +98,7 @@ int main()
 					{
 						perror("2");
 					}
-					execvp(argv[0], argv);
+					//execvp(argv[0], argv);
                     printf("no command");
 					exit(0);
 			}
@@ -114,7 +114,8 @@ int main()
 					{
 						perror("4");
 					}
-					execvp(argv2[0], argv2);
+                    printf("%s %s",argv2[0],argv2[1]);
+					//execvp(argv2[0], argv2);
                     printf("no command");
 					exit(0);
 			}
