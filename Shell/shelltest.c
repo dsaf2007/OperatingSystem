@@ -76,15 +76,15 @@ int main()
 
 		if(strchr(input,'|')!=NULL)
 		{
-            printf("usepipe\n");
+            //printf("usepipe\n");
 			front = strtok(input,"|");
 			back = strtok(NULL,"|");
-            printf("%s",back);
+            //printf("%s",back);
 			strcat(front,"\0");
 			strcat(back,"\0");
 			setArgs(front,argv);
 			setArgs(back,argv2);
-            printf("%s %s",argv2[0],argv2[1]);
+           // printf("%s %s",argv2[0],argv2[1]);
 			if(pipe(fd)==-1)//파이프 생성
 			{
 				printf("fail to call pipe()\n");
@@ -102,7 +102,7 @@ int main()
 					{
 						perror("2");
 					}
-					//execvp(argv[0], argv);
+					execvp(argv[0], argv);
                     printf("no command");
 					exit(0);
 			}
@@ -118,7 +118,7 @@ int main()
 					{
 						perror("4");
 					}
-					//execvp(argv2[0], argv2);
+					execvp(argv2[0], argv2);
                     printf("no command");
 					exit(0);
 			}
@@ -198,6 +198,7 @@ void setArgs(string str,char** argv)
     {
         argv[i]=pch;
         pch=strtok(NULL," ");
+        printf("argv[%d]:%s\n",i,argv[i]);
         i++;
     }
    argv[i]=(char*)0;
