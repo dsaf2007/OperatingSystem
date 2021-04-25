@@ -12,7 +12,7 @@ typedef char* string;
 string history[MAX_HIST];
 int history_index;
 
-void setArgs(string str, string*** out);
+void setArgs(string str, string** out);
 void dispHistory();
 void addHistory(string hist);
 
@@ -132,7 +132,7 @@ int main()
 			perror("fork error");
 			break;
 		case 0:
-			setArgs(input, argv);
+			setArgs(input, &argv);
 			if (strcmp(argv[0], "history") == 0)
 			{
 				dispHistory();
@@ -189,7 +189,7 @@ void dispHistory()
 	}
 }
 
-void setArgs(string str, string*** out)
+void setArgs(string str, string** out)
 {
 	int length = strlen(str);
 	int space = 0, index = 0;
@@ -213,7 +213,7 @@ void setArgs(string str, string*** out)
 	}
 	//	if(index ==1)
 	temp[index] = (char*)0;
-	out = temp;
+	*out = temp;
 	free(temp);
 	//	return str;
 
