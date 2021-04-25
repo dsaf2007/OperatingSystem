@@ -20,7 +20,8 @@ int fd[2];
 int main()
 {
 	string text1="exit\n", text2="history\n";
-	string front =NULL,back =NULL;
+	string front =NULL;
+	string back =NULL;
 	history_index=0;
 	string* argv;
 	string* argv2;
@@ -76,11 +77,10 @@ int main()
 		{
 			printf("pipe\n");
 			front = strtok(input,"|");
-			back = strtok(NULL,"|");
-			strcat(front,"\0");
-			strcat(back,"\0");
-			// argv = setArgs(front);
-			// argv2 = setArgs(back);
+			back = strtok(NULL," ");
+			argv = setArgs(front);
+			//printf("%s",back);
+			 argv2 = setArgs(front);
 			// if(pipe(fd)==-1)//파이프 생성
 			// {
 			// 	printf("fail to call pipe()\n");
@@ -207,7 +207,7 @@ string* setArgs(string str)
 	//	temp[index]=strtok(NULL," ");
 	}
 //	if(index ==1)
-	//	temp[index]=NULL;
+		temp[index]=(char*)0;
 	return temp;
 	
 }
