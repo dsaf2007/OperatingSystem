@@ -32,14 +32,15 @@ int main()
 		//input = (char*)malloc(sizeof(char)*(MAX_LINE/2 +1));
 		char input[MAX_LINE/2+1];
 		//string input;
-		fflush(stdin);
 	//	scanf("%s",input);
 	//	getchar();
 	//	read(0,input,MAX_LINE/2+1);
+        printf("osh>");
 		fgets(input,MAX_LINE/2+1,stdin);
+        fflush(stdin);
 	//	printf("%s\n",input);
 		input[strlen(input)-1] ='\0';
-        printf("osh>");
+        
 		if(strcmp(text1,input)==0)
 		{
 			printf("exit shell");
@@ -123,39 +124,39 @@ int main()
 				perror("5");
 			while(wait(NULL) != -1);
 		}
-		// else
-		// {
-		// 	switch(fork())
-		// 	{
-		// 		case -1:
-		// 			perror("fork error");
-		// 			break;
-		// 		case 0:
-		// 			setArgs(input,argv);
-		// 			if(strcmp(argv[0],"history")==0)
-		// 			{
-		// 				dispHistory();
-		// 				exit(0);
-		// 			}
-		// 			else
-		// 			{
-		// 				if(strcmp(argv[0],"cd")==0)
-		// 				{
-		// 					printf("change dir");
-		// 					chdir(argv[1]);
-		// 				}
-		// 				else
-		// 				{
-		// 				execvp(argv[0],argv);
-		// 				exit(0);
-		// 				}
-		// 			}
-		// 			break;
-		// 		default:
-		// 			wait(NULL);
-		// 	}
+		else
+		{
+			switch(fork())
+			{
+				case -1:
+					perror("fork error");
+					break;
+				case 0:
+					setArgs(input,argv);
+					if(strcmp(argv[0],"history")==0)
+					{
+						dispHistory();
+						exit(0);
+					}
+					else
+					{
+						if(strcmp(argv[0],"cd")==0)
+						{
+							printf("change dir");
+							chdir(argv[1]);
+						}
+						else
+						{
+						execvp(argv[0],argv);
+						exit(0);
+						}
+					}
+					break;
+				default:
+					wait(NULL);
+			}
 
-		// }
+		}
 	}
 	return 0;
 }
