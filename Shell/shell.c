@@ -147,8 +147,9 @@ int main()
 				}
 				else
 				{
-					execvp(argv[0], argv);
+					//execvp(argv[0], argv);
 					printf("no such argument");
+					printf("%S %S",argv[0],argv[1]);
 					exit(0);
 				}
 			}
