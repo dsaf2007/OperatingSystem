@@ -73,11 +73,10 @@ int main()
 		}
 		if(strstr(input,"history")==NULL)addHistory(input);
 
-		if(strchr(input,'|')==NULL)
+		if(strchr(input,'|')!=NULL)
 		{
 			front = strtok(input,"|");
 			back = strtok(NULL,"|");
-			printf("%s",back);
 			strcat(front,"\0");
 			strcat(back,"\0");
 			setArgs(front,argv);
