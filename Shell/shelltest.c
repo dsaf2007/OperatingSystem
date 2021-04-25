@@ -38,6 +38,7 @@ int main()
 		fgets(input,MAX_LINE/2+1,stdin);
 	//	printf("%s\n",input);
 		input[strlen(input)-1] ='\0';
+        printf("osh>");
 		if(strcmp(text1,input)==0)
 		{
 			printf("exit shell");
@@ -75,12 +76,15 @@ int main()
 
 		if(strchr(input,'|')!=NULL)
 		{
+            printf("usepipe\n");
 			front = strtok(input,"|");
 			back = strtok(NULL,"|");
+            printf("%s",back);
 			strcat(front,"\0");
 			strcat(back,"\0");
 			setArgs(front,argv);
 			setArgs(back,argv2);
+            printf("%s %s",argv2[0],argv2[1]);
 			if(pipe(fd)==-1)//파이프 생성
 			{
 				printf("fail to call pipe()\n");
@@ -114,7 +118,6 @@ int main()
 					{
 						perror("4");
 					}
-                    printf("%s %s",argv2[0],argv2[1]);
 					//execvp(argv2[0], argv2);
                     printf("no command");
 					exit(0);
