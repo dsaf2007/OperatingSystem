@@ -72,9 +72,9 @@ int main()
 		}
 		if(strstr(input,"history")==NULL)addHistory(input);
 
-		if(strchr(str,'|')=NULL)
+		if(strchr(input,'|')==NULL)
 		{
-			front = strtok(str,"|");
+			front = strtok(input,"|");
 			back = strtok(NULL,"|");
 			argv = setArgs(front);
 			argv2 = setArgs(back);
@@ -86,7 +86,7 @@ int main()
 			switch(fork())//front
 			{
 				case -1:
-					perror("fork error")
+					perror("fork error");
 					break;
 				case 0:
 					if(close(1)==-1)perror("1");
@@ -113,9 +113,9 @@ int main()
 					execvp(argv2[0], argv2);
 					exit(0);
 			}
-			if(close(Fd[0])==-1 || close(fd[1])==-1)
+			if(close(fd[0])==-1 || close(fd[1])==-1)
 				perror("5");
-			while(wait(NULL)) != -1);
+			while(wait(NULL) != -1);
 		}
 
 		
