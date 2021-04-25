@@ -22,8 +22,8 @@ int main()
 	string text1="exit\n", text2="history\n";
 	string front =NULL,back =NULL;
 	history_index=0;
-	string* argv;
-	string* argv2;
+	string argv[4];
+	string argv2[5];
 	while(1)
 	{
 	//	char input[MAX_LINE/2+1];
@@ -80,8 +80,8 @@ int main()
 			printf("%s",back);
 			strcat(front,"\0");
 			strcat(back,"\0");
-			argv = setArgs(front);
-			argv2 = setArgs(back);
+			setArgs(front,argv);
+			setArgs(back,argv2);
 			if(pipe(fd)==-1)//파이프 생성
 			{
 				printf("fail to call pipe()\n");
@@ -129,7 +129,7 @@ int main()
 					perror("fork error");
 					break;
 				case 0:
-					argv = setArgs(input);
+					setArgs(input,argv);
 					if(strcmp(argv[0],"history")==0)
 					{
 						dispHistory();
