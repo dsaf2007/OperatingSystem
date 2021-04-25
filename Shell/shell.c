@@ -101,7 +101,7 @@ int main()
 			switch(fork())//back
 			{
 				case -1:
-					perror("fork error")
+					perror("fork error");
 					break;
 				case 0:
 					if(close(1)==-1)perror("3");
