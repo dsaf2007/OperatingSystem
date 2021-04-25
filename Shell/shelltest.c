@@ -195,6 +195,6 @@ void setArgs(string str,char** argv)
         pch=strtok(NULL," ");
         i++;
     }
-   // argv[i]=(char*)0;
+   argv[i]="\0";
     printf("%d\n",i);
 }
