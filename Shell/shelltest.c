@@ -12,7 +12,7 @@ typedef char* string;
 string history[MAX_HIST];
 int history_index;
 
-string* setArgs(string str);
+void setArgs(string str,char** argv);
 void dispHistory();
 void addHistory(string hist);
 
