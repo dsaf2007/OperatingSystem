@@ -97,12 +97,10 @@ int main()
 					perror("fork error");
 					break;
 				case 0:
-					if(close(1)==-1)perror("1");
-					if(dup(fd[1]) != 0);//출력파이프 연결
-					if(close(fd[0]) == -1 || close(fd[1]) == -1)
-					{
-						perror("2");
-					}
+					close(STDOUT_FILENO);
+                    dup2(fd[1],1);
+                    close(fd[0]);
+                    close(fd[1]);
 					execvp(argv[0], argv);
                     printf("no command");
 					exit(0);
@@ -113,12 +111,10 @@ int main()
 					perror("fork error");
 					break;
 				case 0:
-					if(close(1)==-1)perror("3");
-					if(dup(fd[0]) != 0);//출력파이프 연결
-					 if(close(fd[0]) == -1 || close(fd[1]) == -1)
-					{
-						perror("4");
-					}
+					close(STDIN_FILENO);
+                    dup2(fd[0],0);
+                    close(fd[1]);
+                    close(fd[0]);
 					execvp(argv2[0], argv2);
                     printf("no command");
 					exit(0);
