@@ -149,7 +149,6 @@ int main()
 				{
 					//execvp(argv[0], argv);
 					printf("no such argument");
-					printf("%s %s",argv[0],argv[1]);
 					exit(0);
 				}
 			}
@@ -216,6 +215,8 @@ void setArgs(string str, string** out)
 	//	if(index ==1)
 	temp[index] = (char*)0;
 	*out = temp;
+	printf("%s %s",out[0],out[1]);
+	
 	free(temp);
 	//	return str;
 
