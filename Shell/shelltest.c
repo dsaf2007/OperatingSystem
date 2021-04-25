@@ -196,4 +196,5 @@ void setArgs(string str,char** argv)
         i++;
     }
     argv[i]=(char*)0;
+    printf("%d\n",i);
 }
