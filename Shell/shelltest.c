@@ -31,11 +31,11 @@ int main()
 		//input = (char*)malloc(sizeof(char)*(MAX_LINE/2 +1));
 		char input[MAX_LINE/2+1];
 		//string input;
-	//	fflush(stdout);
+		fflush(stdin);
 	//	scanf("%s",input);
 	//	getchar();
-		read(0,input,MAX_LINE/2+1);
-	//	fgets(input,MAX_LINE/2+1,stdin);
+	//	read(0,input,MAX_LINE/2+1);
+		fgets(input,MAX_LINE/2+1,stdin);
 	//	printf("%s\n",input);
 		input[strlen(input)-1] ='\0';
 		if(strcmp(text1,input)==0)
@@ -195,6 +195,6 @@ void setArgs(string str,char** argv)
         pch=strtok(NULL," ");
         i++;
     }
-   argv[i]="\0";
+   argv[i]=(char*)0;
     printf("%d\n",i);
 }
