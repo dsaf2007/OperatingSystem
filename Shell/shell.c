@@ -143,7 +143,7 @@ int main()
 						}
 						else
 						{
-						execvp(argv[0],argv);
+					//	execvp(argv[0],argv);
 						exit(0);
 						}
 					}
