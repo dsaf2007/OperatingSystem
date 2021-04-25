@@ -148,6 +148,7 @@ int main()
 				else
 				{
 					execvp(argv[0], argv);
+					printf("no such argument");
 					exit(0);
 				}
 			}
