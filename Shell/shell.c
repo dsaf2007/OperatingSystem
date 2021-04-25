@@ -12,7 +12,7 @@ typedef char* string;
 string history[MAX_HIST];
 int history_index;
 
-void setArgs(string str, string** out);
+void setArgs(string str, string*** out);
 void dispHistory();
 void addHistory(string hist);
 
@@ -189,7 +189,7 @@ void dispHistory()
 	}
 }
 
-void setArgs(string str, string** out)
+void setArgs(string str, string*** out)
 {
 	int length = strlen(str);
 	int space = 0, index = 0;
