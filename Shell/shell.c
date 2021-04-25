@@ -12,7 +12,7 @@ typedef char* string;
 string history[MAX_HIST];
 int history_index;
 
-string* setArgs(string str);
+void setArgs(string str,string** out);
 void dispHistory();
 void addHistory(string hist);
 
@@ -78,9 +78,10 @@ int main()
 			printf("pipe\n");
 			front = strtok(input,"|");
 			back = strtok(NULL," ");
-			argv = setArgs(front);
+			setArgs(front,&argv);
+			free(input);
 			//printf("%s",back);
-			 argv2 = setArgs(front);
+			setArgs(back,&argv2);
 			// if(pipe(fd)==-1)//파이프 생성
 			// {
 			// 	printf("fail to call pipe()\n");
@@ -101,6 +102,8 @@ int main()
 			// 		execvp(argv[0], argv);
 			// 		exit(0);
 			// }
+				}
+
 			// switch(fork())//back
 			// {
 			// 	case -1:
@@ -128,7 +131,7 @@ int main()
 					perror("fork error");
 					break;
 				case 0:
-					argv = setArgs(input);
+					setArgs(input,argv);
 					if(strcmp(argv[0],"history")==0)
 					{
 						dispHistory();
@@ -184,7 +187,7 @@ void dispHistory()
 	}
 }
 
-string* setArgs(string str)
+void setArgs(string str,string** out)
 {
 	int length=strlen(str);
 	int space=0,index=0;
@@ -208,6 +211,8 @@ string* setArgs(string str)
 	}
 //	if(index ==1)
 		temp[index]=(char*)0;
-	return temp;
+		out=temp;
+		free(temp);
+//	return str;
 	
 }
