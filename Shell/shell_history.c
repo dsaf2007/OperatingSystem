@@ -76,6 +76,8 @@ int main()
 		{
 			front = strtok(input,"|");
 			back = strtok(NULL,"|");
+			strcat(front,"\0");
+			strcat(back,"\0");
 			argv = setArgs(front);
 			argv2 = setArgs(back);
 			if(pipe(fd)==-1)//파이프 생성
