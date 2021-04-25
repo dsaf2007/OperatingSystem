@@ -74,51 +74,51 @@ int main()
 
 		if(strchr(input,'|')!=NULL)
 		{
-			printf("pipe\n");
-			front = strtok(input,"|");
-			back = strtok(NULL,"|");
-			strcat(front,"\0");
-			strcat(back,"\0");
-			argv = setArgs(front);
-			argv2 = setArgs(back);
-			if(pipe(fd)==-1)//파이프 생성
-			{
-				printf("fail to call pipe()\n");
-				exit(1);
-			}
-			switch(fork())//front
-			{
-				case -1:
-					perror("fork error");
-					break;
-				case 0:
-					if(close(1)==-1)perror("1");
-					if(dup(fd[1]) != 0);//출력파이프 연결
-					if(close(fd[0])==-1 || close(fd[1]) ==-1)
-					{
-						perror("2");
-					}
-					execvp(argv[0], argv);
-					exit(0);
-			}
-			switch(fork())//back
-			{
-				case -1:
-					perror("fork error");
-					break;
-				case 0:
-					if(close(1)==-1)perror("3");
-					if(dup(fd[0]) != 0);//출력파이프 연결
-					if(close(fd[0])==-1 || close(fd[1]) ==-1)
-					{
-						perror("4");
-					}
-					execvp(argv2[0], argv2);
-					exit(0);
-			}
-			if(close(fd[0])==-1 || close(fd[1])==-1)
-				perror("5");
-			while(wait(NULL) != -1);
+			// printf("pipe\n");
+			// front = strtok(input,"|");
+			// back = strtok(NULL,"|");
+			// strcat(front,"\0");
+			// strcat(back,"\0");
+			// argv = setArgs(front);
+			// argv2 = setArgs(back);
+			// if(pipe(fd)==-1)//파이프 생성
+			// {
+			// 	printf("fail to call pipe()\n");
+			// 	exit(1);
+			// }
+			// switch(fork())//front
+			// {
+			// 	case -1:
+			// 		perror("fork error");
+			// 		break;
+			// 	case 0:
+			// 		if(close(1)==-1)perror("1");
+			// 		if(dup(fd[1]) != 0);//출력파이프 연결
+			// 		if(close(fd[0])==-1 || close(fd[1]) ==-1)
+			// 		{
+			// 			perror("2");
+			// 		}
+			// 		execvp(argv[0], argv);
+			// 		exit(0);
+			// }
+			// switch(fork())//back
+			// {
+			// 	case -1:
+			// 		perror("fork error");
+			// 		break;
+			// 	case 0:
+			// 		if(close(1)==-1)perror("3");
+			// 		if(dup(fd[0]) != 0);//출력파이프 연결
+			// 		if(close(fd[0])==-1 || close(fd[1]) ==-1)
+			// 		{
+			// 			perror("4");
+			// 		}
+			// 		execvp(argv2[0], argv2);
+			// 		exit(0);
+			// }
+			// if(close(fd[0])==-1 || close(fd[1])==-1)
+			// 	perror("5");
+			// while(wait(NULL) != -1);
 		}
 		else
 		{
