@@ -170,17 +170,17 @@ int main()
                     perror("fork fail");
                     break;
                 case 0:
-                    fdr=open(argv[0], O_WRONLY | O_CREAT | O_TRUNC,0644);
+                    fdr=open(argv[0], O_RDONLY);
                     if(fdr==-1)
                     {
                         perror("failed to create file");exit(1);
                     }
-                    if(dup2(fdr,1)==-1)
+                    if(dup2(fdr,0)==-1)
                     {
                         perror("fdr dup2 error");
                     }
                     close(fdr);
-                    execvp(argv2[0],argv2);
+                    execvp(argv[0],argv);
                     exit(0);
                     break;
                 default:
@@ -260,7 +260,6 @@ int length=strlen(str);
 	{
 		argv[index]=pch;
 		pch = strtok(NULL,"\n ");
-      //  printf("argv[%d] : %s\n",index,argv[index]);
 		index++;
 	}
 		argv[index]=(char*)0;
