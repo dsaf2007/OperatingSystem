@@ -143,16 +143,16 @@ int main()
                         perror("fdr dup2 error");
                     }
                     close(fdr);
-                    execvp(argv[0],argv)l;
+                    execvp(argv[0],argv);
                     exit(0);
                     break;
                 default:
                     wait(NULL);
             }
         }
-        else if(strchr(str,'>')!=NULL)
+        else if(strchr(input,'>')!=NULL)
         {
-             front = strtok(input,">");
+            front = strtok(input,">");
             back = strtok(NULL,">");
             strcat(front,"\0");
 			strcat(back,"\0");
