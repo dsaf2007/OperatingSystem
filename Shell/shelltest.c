@@ -135,7 +135,6 @@ int main()
             else if(strcmp(argv[0],"history")==0)
 			{
 				dispHistory();
-				exit(0);
 			}
             else
 			{
