@@ -35,16 +35,6 @@ int main()
         fflush(stdin);
 
 		input[strlen(input)-1] ='\0';
-
-		// if(strchr(input,'&')!=NULL)
-		// {
-		// 	for(int i =0;i<strlen(input);i++)
-		// 	{
-		// 		if(input[i]=='&')
-		// 			input[i]=NULL;
-		// 	}	
-		// 	ampersand =0;
-		// }
         
 		if(strcmp(text1,input)==0)
 		{
