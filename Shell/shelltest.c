@@ -25,16 +25,10 @@ int main()
 	string argv[4];
 	string argv2[4];
     int fd[2];
+    int fdr;
 	while(1)
 	{
-	//	char input[MAX_LINE/2+1];
-		//string input;
-		//input = (char*)malloc(sizeof(char)*(MAX_LINE/2 +1));
 		char input[MAX_LINE/2+1];
-		//string input;
-	//	scanf("%s",input);
-	//	getchar();
-		
         printf("osh>");
         read(0,input,MAX_LINE/2+1);
 		//fgets(input,MAX_LINE/2+1,stdin);
@@ -125,6 +119,68 @@ int main()
 				perror("5");
 			while(wait(NULL) != -1);
 		}
+        else if(strchr(intput,'>')!=NULL)
+        {
+            front = strtok(input,">");
+            back = strtok(NULL,">");
+            strcat(front,"\0");
+			strcat(back,"\0");
+            setArgs(front,argv);
+			setArgs(back,argv2);
+            switch(fork())
+            {
+                case -1:
+                    perror("fork fail");
+                    break;
+                case 0:
+                    fdr=open(argv2[0], O_WRONLY | O_CREAT | O_TRUNC,0644);
+                    if(fdr==-1)
+                    {
+                        perror("failed to create file");exit(1);
+                    }
+                    if(dup2(fdr,1)==-1)
+                    {
+                        perror("fdr dup2 error");
+                    }
+                    close(fdr);
+                    execvp(argv[0],argv)l;
+                    exit(0);
+                    break;
+                default:
+                    wait(NULL);
+            }
+        }
+        else if(strchr(str,'>')!=NULL)
+        {
+             front = strtok(input,">");
+            back = strtok(NULL,">");
+            strcat(front,"\0");
+			strcat(back,"\0");
+            setArgs(front,argv);
+			setArgs(back,argv2);
+            switch(fork())
+            {
+                case -1:
+                    perror("fork fail");
+                    break;
+                case 0:
+                    fdr=open(argv[0], O_WRONLY | O_CREAT | O_TRUNC,0644);
+                    if(fdr==-1)
+                    {
+                        perror("failed to create file");exit(1);
+                    }
+                    if(dup2(fdr,1)==-1)
+                    {
+                        perror("fdr dup2 error");
+                    }
+                    close(fdr);
+                    execvp(argv2[0],argv2)l;
+                    exit(0);
+                    break;
+                default:
+                    wait(NULL);
+            }
+        }
 		else
 		{
             setArgs(input,argv);
