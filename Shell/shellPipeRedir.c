@@ -20,12 +20,12 @@ void addHistory(string hist);
 int main()
 {
 	string text1="exit", text2="history";
-	string front =NULL,back =NULL;
-	history_index=0;
-	string argv[4];
-	string argv2[4];
-    int fd[2];
-    int fdr;
+	string front =NULL,back =NULL;//명령어(앞),(뒤)
+	history_index=0;//히스토리
+	string argv[4];//명령어(앞)
+	string argv2[4];//명령어(뒤)
+    int fd[2];//파이프
+    int fdr;//리다이렉션
 	while(1)
 	{
 	//	char input[MAX_LINE/2+1];
@@ -47,21 +47,21 @@ int main()
 			printf("exit shell");
 			break;
 		}
-		if(input[0]=='!')
+		if(input[0]=='!')//히스토리 관련 기능
 		{
 			if(history_index == 0)
 			{
 				printf("No Command in history\n");
 				continue;
 			}
-			else if(input[1] == '!')
+			else if(input[1] == '!')//이전 명령어
 			{
 				strcpy(input,history[history_index]);
 			}
 			else
 			{
 				int num = (int)(input[1]-'0');
-				if(num>history_index)
+				if(num>history_index)//지정 숫자 명령어
 				{
 					printf("number out of index\n");continue;
 				}
@@ -75,9 +75,9 @@ int main()
 				}
 			}	
 		}
-		if(strstr(input,"history")==NULL)addHistory(input);
+		if(strstr(input,"history")==NULL)addHistory(input);//히스토리에 명령어 추가
 
-		if(strchr(input,'|')!=NULL)
+		if(strchr(input,'|')!=NULL)//파이프 사용
 		{
             //printf("usepipe\n");
 			front = strtok(input,"|");
@@ -100,7 +100,7 @@ int main()
 					break;
 				case 0:
 					close(STDOUT_FILENO);
-                    dup2(fd[1],1);
+                    dup2(fd[1],1);//출력 파이프 연결
                     close(fd[0]);
                     close(fd[1]);
 					execvp(argv[0], argv);
@@ -114,7 +114,7 @@ int main()
 					break;
 				case 0:
 					close(STDIN_FILENO);
-                    dup2(fd[0],0);
+                    dup2(fd[0],0);//입력 파이프 연결
                     close(fd[1]);
                     close(fd[0]);
 					execvp(argv2[0], argv2);
@@ -125,7 +125,7 @@ int main()
 				perror("5");
 			while(wait(NULL) != -1);
 		}
-        else if(strchr(input,'>')!=NULL)
+        else if(strchr(input,'>')!=NULL)//리다이렉션 >
         {
             front = strtok(input,">");
             back = strtok(NULL,">");
@@ -139,7 +139,7 @@ int main()
                     perror("fork fail");
                     break;
                 case 0:
-                    fdr=open(argv2[0], O_WRONLY | O_CREAT | O_TRUNC,0644);
+                    fdr=open(argv2[0], O_WRONLY | O_CREAT | O_TRUNC,0644);//쓰기 전용
                     if(fdr==-1)
                     {
                         perror("failed to create file");exit(1);
@@ -156,7 +156,7 @@ int main()
                     wait(NULL);
             }
         }
-        else if(strchr(input,'<')!=NULL)
+        else if(strchr(input,'<')!=NULL)//리다이렉션 <
         {
             front = strtok(input,"<");
             back = strtok(NULL,"<");
@@ -170,7 +170,7 @@ int main()
                     perror("fork fail");
                     break;
                 case 0:
-                    fdr=open(argv2[0], O_RDONLY);
+                    fdr=open(argv2[0], O_RDONLY);//읽기 전용
                     if(fdr==-1)
                     {
                         perror("failed to create file");exit(1);
@@ -187,10 +187,10 @@ int main()
                     wait(NULL);
             }
         }
-		else
+		else//일반 명령어
 		{
 			 setArgs(input,argv);
-            if(strcmp(argv[0],"cd")==0)
+            if(strcmp(argv[0],"cd")==0)//디렉토리 변경
 			{
 				chdir(argv[1]);
 			}
@@ -219,7 +219,7 @@ int main()
 }
 
 
-void addHistory(string hist)
+void addHistory(string hist)//히스토리 추가
 {
 	history_index++;
 	history[history_index]=(string)malloc(sizeof(char)*strlen(hist));
@@ -227,7 +227,7 @@ void addHistory(string hist)
 //	printf("%d\n",history_index);
 }
 
-void dispHistory()
+void dispHistory()//히스토리 출력
 {
 	if(history_index<11)
 	{
@@ -245,7 +245,7 @@ void dispHistory()
 	}
 }
 
-void setArgs(string str,char** argv)
+void setArgs(string str,char** argv)//입력 문자열 파싱
 {
 int length=strlen(str);
 	int space=0,index=0;
