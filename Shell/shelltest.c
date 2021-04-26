@@ -34,9 +34,9 @@ int main()
 		//string input;
 	//	scanf("%s",input);
 	//	getchar();
-	//	read(0,input,MAX_LINE/2+1);
+		read(0,input,MAX_LINE/2+1);
         printf("osh>");
-		fgets(input,MAX_LINE/2+1,stdin);
+		//fgets(input,MAX_LINE/2+1,stdin);
         fflush(stdin);
 	//	printf("%s\n",input);
 		input[strlen(input)-1] ='\0';
@@ -129,7 +129,6 @@ int main()
             setArgs(input,argv);
             if(strcmp(argv[0],"cd")==0)
 			{
-				printf("change dir");
 				chdir(argv[1]);
 			}
             else if(strcmp(argv[0],"history")==0)
