@@ -174,7 +174,7 @@ int main()
                         perror("fdr dup2 error");
                     }
                     close(fdr);
-                    execvp(argv2[0],argv2)l;
+                    execvp(argv2[0],argv2);
                     exit(0);
                     break;
                 default:
