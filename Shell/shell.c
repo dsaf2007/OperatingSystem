@@ -243,12 +243,6 @@ void dispHistory()//히스토리 출력
 }
 void setArgs(string str,char** argv)//입력 문자열 파싱
 {
-int length=strlen(str);
-	int space=0,index=0;
-	for(int i=0;i<length;i++)
-	{
-		if(str[i]==' ')space++;
-	}
 	string pch;
 	pch=strtok(str,"\n ");
 	index = 0;
