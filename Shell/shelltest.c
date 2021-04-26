@@ -119,7 +119,7 @@ int main()
 				perror("5");
 			while(wait(NULL) != -1);
 		}
-        else if(strchr(intput,'>')!=NULL)
+        else if(strchr(input,'>')!=NULL)
         {
             front = strtok(input,">");
             back = strtok(NULL,">");
