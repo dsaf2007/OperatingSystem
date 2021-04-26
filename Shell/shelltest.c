@@ -34,8 +34,9 @@ int main()
 		//string input;
 	//	scanf("%s",input);
 	//	getchar();
-		read(0,input,MAX_LINE/2+1);
+		
         printf("osh>");
+        read(0,input,MAX_LINE/2+1);
 		//fgets(input,MAX_LINE/2+1,stdin);
         fflush(stdin);
 	//	printf("%s\n",input);
