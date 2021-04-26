@@ -196,7 +196,7 @@ void setArgs(string str,char** argv)
 //     {
 //         argv[i]=pch;
 //         pch=strtok(NULL," ");
-//        // printf("argv[%d]:%s\n",i,argv[i]);
+//        
 //         i++;
 //     }
 //    argv[i]=(char*)0;
@@ -219,6 +219,7 @@ int length=strlen(str);
 	{
 		temp[index]=pch;
 		pch = strtok(NULL,"\n ");
+        printf("argv[%d]:%s\n",i,argv[i]);
 		index++;
 	//	temp[index]=strtok(NULL," ");
 	}
