@@ -219,7 +219,7 @@ int length=strlen(str);
 	{
 		temp[index]=pch;
 		pch = strtok(NULL,"\n ");
-        printf("argv[%d]:%s\n",i,argv[index]);
+        printf("argv[%d]:%s\n",index,argv[index]);
 		index++;
 	//	temp[index]=strtok(NULL," ");
 	}
