@@ -25,6 +25,7 @@ int main()
 	string argv[4];
 	string argv2[4];
     int fd[2];
+    int fdr;
 	while(1)
 	{
 	//	char input[MAX_LINE/2+1];
