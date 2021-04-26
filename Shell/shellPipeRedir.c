@@ -158,8 +158,8 @@ int main()
         }
         else if(strchr(input,'<')!=NULL)
         {
-            front = strtok(input,">");
-            back = strtok(NULL,">");
+            front = strtok(input,"<");
+            back = strtok(NULL,"<");
             strcat(front,"\0");
 			strcat(back,"\0");
             setArgs(front,argv);
