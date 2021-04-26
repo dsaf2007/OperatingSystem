@@ -263,5 +263,5 @@ int length=strlen(str);
 		index++;
 	}
 		argv[index]=(char*)0;
-        return 0;
+        return;
 }
