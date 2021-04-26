@@ -55,7 +55,7 @@ int main()
         
 		if(strcmp(text1,input)==0)
 		{
-			printf("exit shell");
+			printf("exit shell\n");
 			break;
 		}
 		if(input[0]=='!')//히스토리 관련 기능
