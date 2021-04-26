@@ -19,7 +19,7 @@ void addHistory(string hist);
 
 int main()
 {
-	string text1="exit\n", text2="history\n";
+	string text1="exit", text2="history";
 	string front =NULL,back =NULL;
 	history_index=0;
 	string argv[4];
