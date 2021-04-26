@@ -170,7 +170,7 @@ int main()
                     perror("fork fail");
                     break;
                 case 0:
-                    fdr=open(argv[0], O_RDONLY);
+                    fdr=open(argv2[0], O_RDONLY);
                     if(fdr==-1)
                     {
                         perror("failed to create file");exit(1);
