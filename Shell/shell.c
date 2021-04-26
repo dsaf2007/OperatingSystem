@@ -80,7 +80,16 @@ int main()
 			}	
 		}
 		if(strstr(input,"history")==NULL)addHistory(input);//히스토리에 명령어 추가
-
+		
+		// if(strchr(input,'&')!=NULL)
+		// {
+		// 	for(int i =0;i<strlen(input);i++)
+		// 	{
+		// 		if(input[i]=='&')
+		// 			input[i]=NULL;
+		// 	}	
+		// 	ampersand =0;
+		// }
 		if(strchr(input,'|')!=NULL)//파이프 사용
 		{
 			front = strtok(input,"|");
