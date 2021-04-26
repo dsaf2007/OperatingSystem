@@ -204,20 +204,18 @@ void setArgs(string str,char** argv)
 
 int length=strlen(str);
 	int space=0,index=0;
-	string temp_str=str;
 	for(int i=0;i<length;i++)
 	{
 	//	printf("%c\n",str[i]);
 		if(str[i]==' ')space++;
 	}
-	string* temp=(string*)calloc(space+1,sizeof(string));
 	string pch;
-	pch=strtok(temp_str,"\n ");
+	pch=strtok(str,"\n ");
 //	printf("%s\n",pch);
 	index = 0;
 	while(pch !=NULL)
 	{
-		temp[index]=pch;
+		argv[index]=pch;
 		pch = strtok(NULL,"\n ");
         printf("argv[%d]:%s\n",index,argv[index]);
 		index++;
