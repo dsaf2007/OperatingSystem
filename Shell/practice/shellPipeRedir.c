@@ -26,6 +26,7 @@ int main()
 	string argv2[4];//명령어(뒤)
     int fd[2];//파이프
     int fdr;//리다이렉션
+	int ampersand =-1;
 	while(1)
 	{
 	//	char input[MAX_LINE/2+1];
@@ -41,6 +42,16 @@ int main()
         fflush(stdin);
 	//	printf("%s\n",input);
 		input[strlen(input)-1] ='\0';
+
+		if(strchr(input,'&')!=NULL)
+		{
+			for(int i =0;i<strlen(input);i++)
+			{
+				if(strcmp(input[i],"&")
+					input[i]='\0';
+			}	
+			ampersand =0;
+		}
         
 		if(strcmp(text1,input)==0)
 		{
@@ -207,10 +218,12 @@ int main()
 					break;
 				case 0:
 						execvp(argv[0],argv);
+						
 						exit(0);
 					break;
 				default:
-					wait(NULL);
+					if(ampersand ==0)
+						wait(NULL);
 			}
             }
 		}
