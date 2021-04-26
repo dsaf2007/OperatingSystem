@@ -47,7 +47,7 @@ int main()
 		{
 			for(int i =0;i<strlen(input);i++)
 			{
-				if(strcmp(input[i],"&"))
+				if(input[i]='&'))
 					input[i]='\0';
 			}	
 			ampersand =0;
