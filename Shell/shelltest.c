@@ -126,36 +126,32 @@ int main()
 		}
 		else
 		{
-			switch(fork())
+            setArgs(input,argv);
+            if(strcmp(argv[0],"cd")==0)
+			{
+				printf("change dir");
+				chdir(argv[1]);
+			}
+            else if(strcmp(argv[0],"history")==0)
+			{
+				dispHistory();
+				exit(0);
+			}
+            else
+			{
+            switch(fork())
 			{
 				case -1:
 					perror("fork error");
 					break;
 				case 0:
-					setArgs(input,argv);
-					if(strcmp(argv[0],"history")==0)
-					{
-						dispHistory();
-						exit(0);
-					}
-					else
-					{
-						if(strcmp(argv[0],"cd")==0)
-						{
-							printf("change dir");
-							chdir(argv[1]);
-						}
-						else
-						{
 						execvp(argv[0],argv);
 						exit(0);
-						}
-					}
 					break;
 				default:
 					wait(NULL);
 			}
-
+            }
 		}
 	}
 	return 0;
@@ -211,16 +207,13 @@ int length=strlen(str);
 	}
 	string pch;
 	pch=strtok(str,"\n ");
-//	printf("%s\n",pch);
 	index = 0;
 	while(pch !=NULL)
 	{
 		argv[index]=pch;
 		pch = strtok(NULL,"\n ");
-        printf("argv[%d]:%s\n",index,argv[index]);
 		index++;
-	//	temp[index]=strtok(NULL," ");
 	}
-
 		argv[index]=(char*)0;
+        return;
 }
