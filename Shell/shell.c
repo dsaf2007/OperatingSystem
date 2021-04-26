@@ -29,11 +29,22 @@ int main()
 	while(1)
 	{
 		char input[MAX_LINE/2+1];
+		int* ampersand =-1;
         printf("osh>");
 		fgets(input,MAX_LINE/2+1,stdin);
         fflush(stdin);
 
 		input[strlen(input)-1] ='\0';
+
+		// if(strchr(input,'&')!=NULL)
+		// {
+		// 	for(int i =0;i<strlen(input);i++)
+		// 	{
+		// 		if(input[i]=='&')
+		// 			input[i]=NULL;
+		// 	}	
+		// 	ampersand =0;
+		// }
         
 		if(strcmp(text1,input)==0)
 		{
@@ -200,6 +211,7 @@ int main()
 						exit(0);
 					break;
 				default:
+				//if(ampersand ==0)
 					wait(NULL);
 			}
             }
