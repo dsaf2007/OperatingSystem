@@ -260,6 +260,7 @@ int length=strlen(str);
 	{
 		argv[index]=pch;
 		pch = strtok(NULL,"\n ");
+        printf("argv[%d] : %s\n",index,argv[index]);
 		index++;
 	}
 		argv[index]=(char*)0;
