@@ -274,7 +274,7 @@ int length=strlen(str);
 	{
 		argv[index]=pch;
 		pch = strtok(NULL,"\n ");
-		printf("argv[%d] : %s",index,argv[index]);
+		//printf("argv[%d] : %s",index,argv[index]);
 		index++;
 	}
 		argv[index]=(char*)0;
