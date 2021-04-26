@@ -190,15 +190,38 @@ void dispHistory()
 
 void setArgs(string str,char** argv)
 {
-	int i = 0;
-    string pch = strtok(str," ");
-    while(pch!=NULL && i<3)
-    {
-        argv[i]=pch;
-        pch=strtok(NULL," ");
-        printf("argv[%d]:%s\n",i,argv[i]);
-        i++;
-    }
-   argv[i]=(char*)0;
-    //printf("%d\n",i);
+// 	int i = 0;
+//     string pch = strtok(str," ");
+//     while(pch!=NULL && i<3)
+//     {
+//         argv[i]=pch;
+//         pch=strtok(NULL," ");
+//        // printf("argv[%d]:%s\n",i,argv[i]);
+//         i++;
+//     }
+//    argv[i]=(char*)0;
+//     //printf("%d\n",i);
+
+int length=strlen(str);
+	int space=0,index=0;
+	string temp_str=str;
+	for(int i=0;i<length;i++)
+	{
+	//	printf("%c\n",str[i]);
+		if(str[i]==' ')space++;
+	}
+	string* temp=(string*)calloc(space+1,sizeof(string));
+	string pch;
+	pch=strtok(temp_str,"\n ");
+//	printf("%s\n",pch);
+	index = 0;
+	while(pch !=NULL)
+	{
+		temp[index]=pch;
+		pch = strtok(NULL,"\n ");
+		index++;
+	//	temp[index]=strtok(NULL," ");
+	}
+
+		argv[index]=(char*)0;
 }
