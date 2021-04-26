@@ -52,7 +52,6 @@ int main()
 			}	
 			ampersand =0;
 		}
-		printf("%s",input);
         
 		if(strcmp(text1,input)==0)
 		{
