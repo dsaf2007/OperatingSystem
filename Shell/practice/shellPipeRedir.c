@@ -26,9 +26,10 @@ int main()
 	string argv2[4];//명령어(뒤)
     int fd[2];//파이프
     int fdr;//리다이렉션
-	int* ampersand =-1;
+	
 	while(1)
 	{
+		int* ampersand =-1;
 	//	char input[MAX_LINE/2+1];
 		//string input;
 		//input = (char*)malloc(sizeof(char)*(MAX_LINE/2 +1));
